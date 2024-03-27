@@ -9,7 +9,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   //funcion para la accion inicial del bot
   const initialAction = () => {
-    const message = createChatBotMessage("Teclea tu nombre para comenzar");
+    const message = createChatBotMessage("Teclea tu nombre para comenza");
     updateState(message);
   };
 
