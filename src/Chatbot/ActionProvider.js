@@ -1,15 +1,17 @@
 import React from "react";
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
-  //funcion para despues de que da el nombre
-  const afterNameMessage = () => {
-    const message = createChatBotMessage("Dejame saber tu edad para poder sugerirte algo");
+  //funcion para la accion inicial del bot
+  const initialAction = () => {
+    const message = createChatBotMessage("Teclea tu nombre para comenzar");
     updateState(message);
   };
 
-  //funcion para la accion inicial del bot
-  const initialAction = () => {
-    const message = createChatBotMessage("Teclea tu nombre para comenza");
+  //funcion para despues de que da el nombre
+  const afterNameMessage = () => {
+    const message = createChatBotMessage(
+      "Dejame saber tu edad para poder sugerirte algo"
+    );
     updateState(message);
   };
 
@@ -26,7 +28,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         return React.cloneElement(child, {
           actions: {
             initialAction,
-            afterNameMessage
+            afterNameMessage,
           },
         });
       })}
