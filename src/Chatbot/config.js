@@ -1,30 +1,47 @@
-//con este fichero se configura el chatboT
-//ademas, aqui mismo se coloca la secuencia de mensajes
-import { createChatBotMessage } from "react-chatbot-kit";
-import Avatar from "./Avatar.js"
-import StartBtn from "./StartBtn.js"
-import StartSlow from "./StartSlow.js"
+import { createChatBotMessage } from 'react-chatbot-kit';
+import Avatar from './components/Avatar';
+import StartBtn from './components/StartBtn';
+import StartSlow from './components/StartSlow';
+import data from './data';
+import DipslayImage from './components/DipslayImage';
+
 
 const config = {
-  botName: "Empleate con Talento Bot",
-  initialMessages: [
-    createChatBotMessage(`Bienvenido a nuestro consejero virtual`, {
-      widget: "StartBtn",
-    }),
-  ],
-  customComponents: {
-    userAvatar: (props) => <Avatar {...props} />,
-  },
-  widgets: [
-    {
-      widgetName: "StartBtn",
-      widgetFunc: (props) => <StartBtn {...props} />,
+    botName: "Bot de Edad y Vehiculo",
+    initialMessages: [createChatBotMessage(`Bienvenido al consejero de Motos!`, {
+        widget: "startBtn"
+    })],
+    customComponents: {
+        botAvatar: (props) => <Avatar {...props} />,
     },
-    {
-      widgetName: "StartSlow",
-      widgetFunc: (props) => <StartSlow {...props} />,
+    state: {
+        checker: null,
+        data,
+        userData: {
+            name: "",
+            age: 0,
+            category: "",
+            product: {
+                name: "",
+                link: "",
+                imageUrl: ""
+            }
+        }
     },
-  ],
+    widgets: [
+        {
+            widgetName: "startBtn",
+            widgetFunc: (props) => <StartBtn {...props} />,
+        },
+        {
+            widgetName: "startSlow",
+            widgetFunc: (props) => <StartSlow {...props} />,
+        },
+        {
+            widgetName: "finalImage",
+            widgetFunc: (props) => <DipslayImage {...props} />,
+        },
+    ]
 };
 
 export default config;
